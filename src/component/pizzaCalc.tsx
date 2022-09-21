@@ -21,6 +21,12 @@ const PizzaCalc = () => {
     setPayment(e.target.value);
   };
 
+  const handleAddAmount = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      changeCal(parseFloat(payment));
+    }
+  };
+
   const checkPizzaQuantity = () => {
     if (count <= 0) {
       alert("Error submitting");
@@ -68,6 +74,7 @@ const PizzaCalc = () => {
           amount tendered :
           <input
             onKeyPress={(e) => !/[0-9,.]/.test(e.key) && e.preventDefault()}
+            onKeyDown={handleAddAmount}
             onChange={handlePayment}
           ></input>
           <ButtonTheme
